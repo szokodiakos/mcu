@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import Movie from './movie/movie.component';
-import { fetchMovies } from '../common/common.actions';
-import { showMovieDetails } from './movies.actions';
+import { fetchMovies, navigateToMovieDetails } from './movies.actions';
 
 class Movies extends Component {
   componentDidMount() {
@@ -15,7 +14,7 @@ class Movies extends Component {
       <div>
         <div>
           <ul>
-            {this.props.movies.map(m => <Movie key={m.name} {...m} onMovieClick={() => this.props.showMovieDetails(m.name)}/>)}
+            {this.props.movies.map(m => <Movie key={m.name} {...m} onMovieClick={() => this.props.navigateToMovieDetails(m.name)}/>)}
           </ul>
         </div>
       </div>
@@ -23,7 +22,9 @@ class Movies extends Component {
   }
 }
 
-export default connect(
+Movies = connect(
   ({ movies }) => ({ movies }),
-  { fetchMovies, showMovieDetails },
+  { fetchMovies, navigateToMovieDetails },
 )(Movies);
+
+export default Movies;

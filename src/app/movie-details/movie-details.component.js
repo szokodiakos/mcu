@@ -1,20 +1,31 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 
-import { fetchMovies } from '../common/common.actions';
+import { fetchMovieDetails } from './movie-details.actions';
 
 class MovieDetails extends Component {
   componentDidMount() {
-    this.props.fetchMovies();
+    const movieName = this.props.match.params.name;
+    this.props.fetchMovieDetails(movieName);
   }
 
   render() {
-    console.log(this.props);
-    return <h1>Hi</h1>;
+    return this.props.movieDetails.movie === null
+      ?  <h1>Not Found</h1>
+      : this.renderMovieDetails();
+  }
+
+  renderMovieDetails() {
+    return <h1>{this.props.movieDetails.movie.name}</h1>;
   }
 }
 
-export default connect(
-  ({ movies }) => ({ movies }),
-  { fetchMovies },
+MovieDetails = withRouter(MovieDetails);
+
+MovieDetails = connect(
+  ({ movieDetails }) => ({ movieDetails }),
+  { fetchMovieDetails },
 )(MovieDetails);
+
+export default MovieDetails;
