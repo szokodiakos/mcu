@@ -1,7 +1,6 @@
 import { combineEpics } from 'redux-observable';
 import { push } from 'react-router-redux';
 import { map, switchMap } from 'rxjs/operators';
-import { of } from 'rxjs/observable/of';
 
 import { moviesActionType, fetchMoviesSuccess } from './movies.actions';
 

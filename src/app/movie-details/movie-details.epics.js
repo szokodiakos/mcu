@@ -5,7 +5,7 @@ import { map, switchMap } from 'rxjs/operators';
 
 const fetchMovieDetailsEpic = (action$, store, { movieRepo }) => action$.ofType(movieDetailsActionType.FETCH_MOVIE_DETAILS).pipe(
   map(action => action.payload),
-  switchMap(movieName => movieRepo.getByURL(movieName)),
+  switchMap(movieTitle => movieRepo.getByURL(movieTitle)),
   map(movie => movie
     ? fetchMovieDetailsSuccess(movie)
     : fetchMovieDetailsNotFound()

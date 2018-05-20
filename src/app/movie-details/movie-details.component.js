@@ -6,8 +6,8 @@ import { fetchMovieDetails } from './movie-details.actions';
 
 class MovieDetails extends Component {
   componentDidMount() {
-    const movieName = this.props.match.params.name;
-    this.props.fetchMovieDetails(movieName);
+    const movieTitle = this.props.match.params.title;
+    this.props.fetchMovieDetails(movieTitle);
   }
 
   render() {
@@ -17,7 +17,7 @@ class MovieDetails extends Component {
   }
 
   renderMovieDetails() {
-    return <h1>{this.props.movieDetails.movie.name}</h1>;
+    return <h1>{this.props.movieDetails.movie.title}</h1>;
   }
 }
 

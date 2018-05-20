@@ -1,10 +1,10 @@
 class Movie {
-  constructor(name) {
-    this.name = name;
+  constructor(data) {
+    this.title = data.title;
   }
 
   toURL() {
-    return this.name.toLowerCase().replace(/\s/g, '-');
+    return this.title.toLowerCase().replace(/\s/g, '-');
   }
 }
 
