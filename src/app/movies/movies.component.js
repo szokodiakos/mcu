@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import Movie from './movie/movie.component';
-import { fetchMovies } from './movies.actions';
+import { fetchMovies, showMovieDetails } from './movies.actions';
 
 class Movies extends Component {
   componentDidMount() {
@@ -12,9 +12,11 @@ class Movies extends Component {
   render() {
     return (
       <div>
-        <ul>
-          {this.props.movies.map(m => <Movie key={m.name} {...m}/>)}
-        </ul>
+        <div>
+          <ul>
+            {this.props.movies.map(m => <Movie key={m.name} {...m} onMovieClick={() => this.props.showMovieDetails(m.name)}/>)}
+          </ul>
+        </div>
       </div>
     );
   }
@@ -22,5 +24,5 @@ class Movies extends Component {
 
 export default connect(
   ({ movies }) => ({ movies }),
-  { fetchMovies },
+  { fetchMovies, showMovieDetails },
 )(Movies);

@@ -1,9 +1,9 @@
 import { combineEpics } from 'redux-observable';
 
-import moviesEpic from '../movies/movies.epic';
+import moviesEpics from '../movies/movies.epics';
 
 const rootEpic = combineEpics(
-  moviesEpic,
+  moviesEpics,
 );
 
 export default rootEpic;

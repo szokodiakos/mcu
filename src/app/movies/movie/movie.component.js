@@ -1,7 +1,7 @@
 import React from 'react';
 
-const Movie = ({ name }) => (
-  <li>{name}</li>
+const Movie = ({ name, onMovieClick }) => (
+  <li onClick={onMovieClick}>{name}</li>
 );
 
 export default Movie;
