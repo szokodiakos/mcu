@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import Movie from './movie/movie.component';
-import { fetchMovies, showMovieDetails } from './movies.actions';
+import { fetchMovies } from '../common/common.actions';
+import { showMovieDetails } from './movies.actions';
 
 class Movies extends Component {
   componentDidMount() {

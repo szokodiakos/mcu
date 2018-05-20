@@ -6,8 +6,9 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import rootEpic from './root-epic';
 import rootReducer from './root-reducer';
 import history from './history';
+import MoviesRepo from '../../domain/movies/movies-repo';
 
-const epicMiddleware = createEpicMiddleware(rootEpic);
+const epicMiddleware = createEpicMiddleware(rootEpic, { dependencies: { moviesRepo: new MoviesRepo() } });
 const routerMiddleware = createRouterMiddleware(history);
 
 export default function configureStore() {
