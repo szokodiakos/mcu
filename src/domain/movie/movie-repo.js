@@ -1,10 +1,10 @@
 import { of } from 'rxjs/observable/of';
 
-import movieNameToURL from './movie-name-to-url';
+import Movie from './movie';
 
-const movies = [{
-  name: 'The Avengers',
-}];
+const movies = [
+  new Movie('The Avengers'),
+];
 
 class MovieRepo {
   getAll() {
@@ -12,7 +12,7 @@ class MovieRepo {
   }
 
   getByURL(url) {
-    return of(movies.find(m => movieNameToURL(m.name) === url));
+    return of(movies.find(m => m.toURL() === url));
   }
 }
 
