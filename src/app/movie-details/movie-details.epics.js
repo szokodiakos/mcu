@@ -1,6 +1,6 @@
 import { combineEpics } from 'redux-observable';
 
-import { movieDetailsActionType, fetchMovieDetailsSuccess, fetchMovieDetailsFailed } from './movie-details.actions';
+import { movieDetailsActionType, fetchMovieDetailsSuccess, fetchMovieDetailsNotFound } from './movie-details.actions';
 import { map, switchMap } from 'rxjs/operators';
 
 const fetchMovieDetailsEpic = (action$, store, { movieRepo }) => action$.ofType(movieDetailsActionType.FETCH_MOVIE_DETAILS).pipe(
@@ -8,7 +8,7 @@ const fetchMovieDetailsEpic = (action$, store, { movieRepo }) => action$.ofType(
   switchMap(movieName => movieRepo.getByURL(movieName)),
   map(movie => movie
     ? fetchMovieDetailsSuccess(movie)
-    : fetchMovieDetailsFailed()
+    : fetchMovieDetailsNotFound()
   ),
 );
 
