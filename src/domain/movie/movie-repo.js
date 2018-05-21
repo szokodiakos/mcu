@@ -2,7 +2,10 @@ import * as R from 'ramda';
 
 class MovieRepo {
   getAll(entities) {
-    return populateMovies(entities);
+    return R.pipe(
+      R.values,
+      R.map(populateMovie(entities)),
+    )(entities.movies);
   }
 
   getByID(movieID, entities) {
@@ -17,11 +20,6 @@ class MovieRepo {
     )(entities.movies);
   }
 }
-
-const populateMovies = entities => R.pipe(
-  R.values,
-  R.map(populateMovie(entities)),
-)(entities.movies);
 
 const populateMovie = entities => movie => ({
   ...movie,

@@ -7,8 +7,12 @@ import rootEpic from './root-epic';
 import rootReducer from './root-reducer';
 import history from './history';
 import MovieRepo from '../../domain/movie/movie-repo';
+import CharacterRepo from '../../domain/character/character-repo';
 
-const epicMiddleware = createEpicMiddleware(rootEpic, { dependencies: { movieRepo: new MovieRepo() }});
+const epicMiddleware = createEpicMiddleware(rootEpic, { dependencies: {
+  movieRepo: new MovieRepo(),
+  characterRepo: new CharacterRepo(),
+}});
 const routerMiddleware = createRouterMiddleware(history);
 
 export default function configureStore() {
