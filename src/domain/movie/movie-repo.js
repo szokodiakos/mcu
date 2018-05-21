@@ -18,7 +18,7 @@ class MovieRepo {
   }
 }
 
-const populateMovies = (entities) => R.pipe(
+const populateMovies = entities => R.pipe(
   R.values,
   R.map(populateMovie(entities)),
 )(entities.movies);
@@ -26,20 +26,33 @@ const populateMovies = (entities) => R.pipe(
 const populateMovie = entities => movie => ({
   ...movie,
   characters: populateCharacters(movie.id, entities),
+  stones: populateStones(movie.id, entities),
 });
 
-const populateCharacters = (movieID, entities) => R.pipe(
+const populateAppearances = (entityKey, appearanceKey, appearanceEntityKey) => (movieID, entities) => R.pipe(
   R.values,
   R.filter(R.propEq('movie', movieID)),
   R.map(appearance => ({
     type: appearance.type,
-    character: populateCharacter(appearance.character, entities),
+    [appearanceKey]: populateAppearance(appearanceEntityKey)(appearance[appearanceKey], entities),
   })),
-)(entities.characterAppearances);
+)(entities[entityKey]);
 
-const populateCharacter = (characterID, entities) => R.pipe(
+const populateCharacters = populateAppearances(
+  'characterAppearances',
+  'character',
+  'characters',
+);
+
+const populateStones = populateAppearances(
+  'stoneAppearances',
+  'stone',
+  'stones',
+);
+
+const populateAppearance = appearanceEntityKey => (id, entities) => R.pipe(
   R.values,
-  R.find(R.propEq('id', characterID)),
-)(entities.characters);
+  R.find(R.propEq('id', id)),
+)(entities[appearanceEntityKey]);
 
 export default MovieRepo;

@@ -20,13 +20,13 @@ const stoneAppearances = {
   spaceInTheAvengers: {
     id: 'spaceInTheAvengers',
     stone: stones.space.id,
-    movies: movies.theAvengers.id,
+    movie: movies.theAvengers.id,
     type: appearanceType.APPEARED,
   },
   mindInTheAvengers: {
     id: 'mindInTheAvengers',
     stone: stones.mind.id,
-    movies: movies.theAvengers.id,
+    movie: movies.theAvengers.id,
     type: appearanceType.FIRST_APPEARED,
   },
 };
