@@ -1,11 +1,13 @@
 import { combineEpics } from 'redux-observable';
+import { map } from 'rxjs/operators';
+import _camelCase from 'lodash.camelcase';
 
 import { movieDetailsActionType, fetchMovieDetailsSuccess, fetchMovieDetailsNotFound } from './movie-details.actions';
-import { map, switchMap } from 'rxjs/operators';
 
 const fetchMovieDetailsEpic = (action$, store, { movieRepo }) => action$.ofType(movieDetailsActionType.FETCH_MOVIE_DETAILS).pipe(
   map(action => action.payload),
-  switchMap(movieTitle => movieRepo.getByURL(movieTitle)),
+  map(_camelCase),
+  map(movieID => movieRepo.getByID(movieID, store.getState().entities)),
   map(movie => movie
     ? fetchMovieDetailsSuccess(movie)
     : fetchMovieDetailsNotFound()

@@ -14,7 +14,7 @@ class Movies extends Component {
       <div>
         <div>
           <ul>
-            {this.props.movies.map(m => <Movie key={m.title} {...m} onMovieClick={() => this.props.navigateToMovieDetails(m)}/>)}
+            {this.props.movies.map(m => <Movie key={m.title} {...m} onMovieClick={() => this.props.navigateToMovieDetails(m.id)}/>)}
           </ul>
         </div>
       </div>
@@ -23,7 +23,7 @@ class Movies extends Component {
 }
 
 Movies = connect(
-  ({ movies }) => ({ movies }),
+  ({ ui: { movies } }) => ({ movies }),
   { fetchMovies, navigateToMovieDetails },
 )(Movies);
 

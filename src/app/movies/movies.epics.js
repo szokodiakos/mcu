@@ -1,19 +1,23 @@
 import { combineEpics } from 'redux-observable';
 import { push } from 'react-router-redux';
-import { map, switchMap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
+import _kebabCase from 'lodash.kebabcase';
 
 import { moviesActionType, fetchMoviesSuccess } from './movies.actions';
 
 const fetchMoviesEpic = (action$, store, { movieRepo }) => action$.ofType(moviesActionType.FETCH_MOVIES).pipe(
-  switchMap(() => movieRepo.getAll()),
+  map(() => store.getState()),
+  map(state => state.entities),
+  map(entities => movieRepo.getAll(entities)),
   map(movies => fetchMoviesSuccess(movies)),
 );
 
 const navigateToMovieDetailsEpic = action$ => action$.ofType(moviesActionType.NAVIGATE_TO_MOVIE_DETAILS).pipe(
   map(action => action.payload),
-  map(movie => movie.toURL()),
+  map(_kebabCase),
   map(url => push(`/movies/${url}`)),
 );
+
 
 export default combineEpics(
   fetchMoviesEpic,

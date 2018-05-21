@@ -4,7 +4,7 @@ export const movieDetailsActionType = {
   FETCH_MOVIE_DETAILS_NOT_FOUND: 'FETCH_MOVIE_DETAILS_NOT_FOUND',
 };
 
-export const fetchMovieDetails = (movieTitle) => ({ type: movieDetailsActionType.FETCH_MOVIE_DETAILS, payload: movieTitle });
+export const fetchMovieDetails = (url) => ({ type: movieDetailsActionType.FETCH_MOVIE_DETAILS, payload: url });
 
 export const fetchMovieDetailsSuccess = (movie) => ({ type: movieDetailsActionType.FETCH_MOVIE_DETAILS_SUCCESS, payload: movie });
 

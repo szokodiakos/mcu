@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 
-import moviesReducer from '../movies/movies.reducer';
-import movieDetailsReducer from '../movie-details/movie-details.reducer';
+import entitiesReducer from '../entities/entities.reducer';
+import uiReducer from '../ui/ui.reducer';
 
 const rootReducer = combineReducers({
-  movies: moviesReducer,
-  movieDetails: movieDetailsReducer,
+  ui: uiReducer,
+  entities: entitiesReducer,
   router: routerReducer,
 });
 

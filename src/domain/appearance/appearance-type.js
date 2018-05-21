@@ -1,0 +1,8 @@
+const appearanceType = {
+  FIRST_APPEARED: 'FIRST_APPEARED',
+  APPEARED: 'APPEARED',
+  LAST_APPEARED: 'LAST_APPEARED',
+  FIRST_AND_LAST_APPEARED: 'FIRST_AND_LAST_APPEARED',
+};
+
+export default appearanceType;

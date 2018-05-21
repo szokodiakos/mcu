@@ -24,7 +24,7 @@ class MovieDetails extends Component {
 MovieDetails = withRouter(MovieDetails);
 
 MovieDetails = connect(
-  ({ movieDetails }) => ({ movieDetails }),
+  ({ ui: { movieDetails } }) => ({ movieDetails }),
   { fetchMovieDetails },
 )(MovieDetails);
 
