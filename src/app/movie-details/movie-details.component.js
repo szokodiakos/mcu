@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 
-import { fetchMovieDetails } from './movie-details.actions';
+import { fetchMovieDetails, navigateToCharacterDetails } from './movie-details.actions';
 
 class MovieDetails extends Component {
   componentDidMount() {
@@ -17,7 +17,15 @@ class MovieDetails extends Component {
   }
 
   renderMovieDetails() {
-    return <h1>{this.props.movieDetails.movie.title}</h1>;
+    const movie = this.props.movieDetails.movie;
+    return (
+      <div>
+        <h1>{movie.title}</h1>
+        {movie.characters && <ul>
+          {movie.characters.map(c => <li onClick={() => this.props.navigateToCharacterDetails(c.character.id)} key={c.character.id}>{c.character.name}</li>)}
+        </ul>}
+      </div>
+    );
   }
 }
 
@@ -25,7 +33,7 @@ MovieDetails = withRouter(MovieDetails);
 
 MovieDetails = connect(
   ({ ui: { movieDetails } }) => ({ movieDetails }),
-  { fetchMovieDetails },
+  { fetchMovieDetails, navigateToCharacterDetails },
 )(MovieDetails);
 
 export default MovieDetails;

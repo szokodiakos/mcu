@@ -14,7 +14,7 @@ class Movies extends Component {
       <div>
         <div>
           <ul>
-            {this.props.movies.map(m => <Movie key={m.title} {...m} onMovieClick={() => this.props.navigateToMovieDetails(m.id)}/>)}
+            {this.props.movies.map(m => <Movie key={m.id} {...m} onMovieClick={() => this.props.navigateToMovieDetails(m.id)}/>)}
           </ul>
         </div>
       </div>
