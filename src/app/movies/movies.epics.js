@@ -5,10 +5,8 @@ import _kebabCase from 'lodash.kebabcase';
 
 import { moviesActionType, fetchMoviesSuccess } from './movies.actions';
 
-const fetchMoviesEpic = (action$, store, { movieRepo }) => action$.ofType(moviesActionType.FETCH_MOVIES).pipe(
-  map(() => store.getState()),
-  map(state => state.entities),
-  map(entities => movieRepo.getAll(entities)),
+const fetchMoviesEpic = (action$, store, { repo }) => action$.ofType(moviesActionType.FETCH_MOVIES).pipe(
+  map(() => repo.getAllMovies()),
   map(movies => fetchMoviesSuccess(movies)),
 );
 

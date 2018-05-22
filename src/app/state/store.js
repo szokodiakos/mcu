@@ -6,13 +6,10 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import rootEpic from './root-epic';
 import rootReducer from './root-reducer';
 import history from './history';
-import MovieRepo from '../../domain/movie/movie-repo';
-import CharacterRepo from '../../domain/character/character-repo';
+import Repo from '../data/repo';
+import entities from '../data/entities';
 
-const epicMiddleware = createEpicMiddleware(rootEpic, { dependencies: {
-  movieRepo: new MovieRepo(),
-  characterRepo: new CharacterRepo(),
-}});
+const epicMiddleware = createEpicMiddleware(rootEpic, { dependencies: { repo: new Repo(entities) } });
 const routerMiddleware = createRouterMiddleware(history);
 
 export default function configureStore() {
