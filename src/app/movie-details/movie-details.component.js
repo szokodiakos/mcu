@@ -11,9 +11,7 @@ class MovieDetails extends Component {
   }
 
   render() {
-    return this.props.movieDetails.movie === null
-      ?  <h1>Not Found</h1>
-      : this.renderMovieDetails();
+    return this.props.movieDetails.movie === null ? <h1>Not Found</h1> : this.renderMovieDetails();
   }
 
   renderMovieDetails() {
@@ -21,9 +19,15 @@ class MovieDetails extends Component {
     return (
       <div>
         <h1>{movie.title}</h1>
-        {movie.characters && <ul>
-          {movie.characters.map(c => <li onClick={() => this.props.navigateToCharacterDetails(c.character.id)} key={c.character.id}>{c.character.name}</li>)}
-        </ul>}
+        {movie.characters && (
+          <ul>
+            {movie.characters.map(c => (
+              <li onClick={() => this.props.navigateToCharacterDetails(c.character.id)} key={c.character.id}>
+                {c.character.name}
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
     );
   }
@@ -31,9 +35,9 @@ class MovieDetails extends Component {
 
 MovieDetails = withRouter(MovieDetails);
 
-MovieDetails = connect(
-  ({ ui: { movieDetails } }) => ({ movieDetails }),
-  { fetchMovieDetails, navigateToCharacterDetails },
-)(MovieDetails);
+MovieDetails = connect(({ ui: { movieDetails } }) => ({ movieDetails }), {
+  fetchMovieDetails,
+  navigateToCharacterDetails,
+})(MovieDetails);
 
 export default MovieDetails;

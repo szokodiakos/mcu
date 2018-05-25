@@ -4,12 +4,13 @@ const getAll = entities => R.values(entities);
 
 const getByID = (entities, id) => R.find(R.propEq('id', id), entities);
 
-const populate = filterFn => (propertyToPopulateTo, entitiesToPopulateFrom, compareFn) => entity => R.pipe(
-  R.set(
-    R.lensProp(propertyToPopulateTo),
-    filterFn(entityToBePopulated => compareFn(entity, entityToBePopulated), entitiesToPopulateFrom),
-  ),
-)(entity);
+const populate = filterFn => (propertyToPopulateTo, entitiesToPopulateFrom, compareFn) => entity =>
+  R.pipe(
+    R.set(
+      R.lensProp(propertyToPopulateTo),
+      filterFn(entityToBePopulated => compareFn(entity, entityToBePopulated), entitiesToPopulateFrom),
+    ),
+  )(entity);
 
 const populateOne = populate(R.find);
 const populateMany = populate(R.filter);
@@ -20,17 +21,11 @@ class Repo {
   }
 
   getAllMovies() {
-    return R.pipe(
-      R.map(movie => this._populateMovie(movie)),
-    )(getAll(this._entities.movies));
+    return R.pipe(R.map(movie => this._populateMovie(movie)))(getAll(this._entities.movies));
   }
 
   getMovieByID(movieID) {
-    return R.ifElse(
-      R.isNil,
-      R.identity,
-      movie => this._populateMovie(movie),
-    )(getByID(this._movies, movieID));
+    return R.ifElse(R.isNil, R.identity, movie => this._populateMovie(movie))(getByID(this._movies, movieID));
   }
 
   _populateMovie(movie) {
@@ -61,11 +56,9 @@ class Repo {
   }
 
   getCharacterByID(characterID) {
-    return R.ifElse(
-      R.isNil,
-      R.identity,
-      character => this._populateCharacter(character),
-    )(getByID(this._characters, characterID));
+    return R.ifElse(R.isNil, R.identity, character => this._populateCharacter(character))(
+      getByID(this._characters, characterID),
+    );
   }
 
   _populateCharacter(character) {
@@ -73,7 +66,7 @@ class Repo {
       this._populateCharacterAppearancesToCharacter,
       R.evolve({
         movies: R.map(this._populateMovieToCharacterAppearance),
-      })
+      }),
     )(character);
   }
 

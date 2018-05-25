@@ -11,9 +11,7 @@ class CharacterDetails extends Component {
   }
 
   render() {
-    return this.props.characterDetails.character === null
-      ?  <h1>Not Found</h1>
-      : this.renderCharacterDetails();
+    return this.props.characterDetails.character === null ? <h1>Not Found</h1> : this.renderCharacterDetails();
   }
 
   renderCharacterDetails() {
@@ -23,9 +21,8 @@ class CharacterDetails extends Component {
 
 CharacterDetails = withRouter(CharacterDetails);
 
-CharacterDetails = connect(
-  ({ ui: { characterDetails } }) => ({ characterDetails }),
-  { fetchCharacterDetails },
-)(CharacterDetails);
+CharacterDetails = connect(({ ui: { characterDetails } }) => ({ characterDetails }), { fetchCharacterDetails })(
+  CharacterDetails,
+);
 
 export default CharacterDetails;

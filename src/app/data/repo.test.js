@@ -39,43 +39,44 @@ const entities = {
 };
 
 describe('repo', () => {
-
   describe('getAllMovies', () => {
-
     test('get a single movie with stone and character', () => {
-      
       const repo = new Repo(entities);
-  
+
       const movies = repo.getAllMovies();
-  
-      expect(movies).toEqual([{
-        id: 'foo',
-        title: 'The Foo',
-        characters: [{
-          id: 'barInFoo',
-          type: appearanceType.FIRST_APPEARED,
-          movie: 'foo',
-          character: {
-            id: 'bar',
-            name: 'The Bar',
-          },
-        }],
-        stones: [{
-          id: 'bazInFoo',
-          type: appearanceType.LAST_APPEARED,
-          movie: 'foo',
-          stone: {
-            id: 'baz',
-            name: 'The Baz',
-          },
-        }],
-      }]);
+
+      expect(movies).toEqual([
+        {
+          id: 'foo',
+          title: 'The Foo',
+          characters: [
+            {
+              id: 'barInFoo',
+              type: appearanceType.FIRST_APPEARED,
+              movie: 'foo',
+              character: {
+                id: 'bar',
+                name: 'The Bar',
+              },
+            },
+          ],
+          stones: [
+            {
+              id: 'bazInFoo',
+              type: appearanceType.LAST_APPEARED,
+              movie: 'foo',
+              stone: {
+                id: 'baz',
+                name: 'The Baz',
+              },
+            },
+          ],
+        },
+      ]);
     });
-    
   });
 
   describe('getMovieByID', () => {
-
     test('get a single movie populated', () => {
       const repo = new Repo(entities);
 
@@ -84,27 +85,30 @@ describe('repo', () => {
       expect(movie).toEqual({
         id: 'foo',
         title: 'The Foo',
-        characters: [{
-          id: 'barInFoo',
-          type: appearanceType.FIRST_APPEARED,
-          movie: 'foo',
-          character: {
-            id: 'bar',
-            name: 'The Bar',
+        characters: [
+          {
+            id: 'barInFoo',
+            type: appearanceType.FIRST_APPEARED,
+            movie: 'foo',
+            character: {
+              id: 'bar',
+              name: 'The Bar',
+            },
           },
-        }],
-        stones: [{
-          id: 'bazInFoo',
-          type: appearanceType.LAST_APPEARED,
-          movie: 'foo',
-          stone: {
-            id: 'baz',
-            name: 'The Baz',
+        ],
+        stones: [
+          {
+            id: 'bazInFoo',
+            type: appearanceType.LAST_APPEARED,
+            movie: 'foo',
+            stone: {
+              id: 'baz',
+              name: 'The Baz',
+            },
           },
-        }],
+        ],
       });
     });
-
   });
 
   describe('getCharacterByID', () => {
@@ -115,16 +119,17 @@ describe('repo', () => {
     expect(character).toEqual({
       id: 'bar',
       name: 'The Bar',
-      movies: [{
-        id: 'barInFoo',
-        type: appearanceType.FIRST_APPEARED,
-        character: 'bar',
-        movie: {
-          id: 'foo',
-          title: 'The Foo',
+      movies: [
+        {
+          id: 'barInFoo',
+          type: appearanceType.FIRST_APPEARED,
+          character: 'bar',
+          movie: {
+            id: 'foo',
+            title: 'The Foo',
+          },
         },
-      }],
+      ],
     });
   });
-
 });

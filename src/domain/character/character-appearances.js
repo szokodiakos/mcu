@@ -27,13 +27,13 @@ const characterAppearances = {
     id: 'ironManInIronMan',
     character: characters.ironMan.id,
     movie: movies.ironMan.id,
-    type: appearanceType.FIRST_APPEARED,    
+    type: appearanceType.FIRST_APPEARED,
   },
   warMachineInIronMan: {
     id: 'warMachineInIronMan',
     character: characters.warMachine.id,
     movie: movies.ironMan.id,
-    type: appearanceType.FIRST_APPEARED,    
+    type: appearanceType.FIRST_APPEARED,
   },
 
   blackWidowInIronMan2: {
@@ -46,13 +46,13 @@ const characterAppearances = {
     id: 'ironManInIronMan2',
     character: characters.ironMan.id,
     movie: movies.ironMan2.id,
-    type: appearanceType.APPEARED,    
+    type: appearanceType.APPEARED,
   },
   warMachineInIronMan2: {
     id: 'warMachineInIronMan2',
     character: characters.warMachine.id,
     movie: movies.ironMan2.id,
-    type: appearanceType.APPEARED,    
+    type: appearanceType.APPEARED,
   },
 
   thorInThor: {

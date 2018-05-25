@@ -1,4 +1,4 @@
-import { moviesActionType } from "./movies.actions";
+import { moviesActionType } from './movies.actions';
 
 const initialState = [];
 

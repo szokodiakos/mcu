@@ -9,18 +9,12 @@ import history from './history';
 import Repo from '../data/repo';
 import entities from '../data/entities';
 
-const epicMiddleware = createEpicMiddleware(rootEpic, { dependencies: { repo: new Repo(entities) } });
+const epicMiddleware = createEpicMiddleware(rootEpic, {
+  dependencies: { repo: new Repo(entities) },
+});
 const routerMiddleware = createRouterMiddleware(history);
 
 export default function configureStore() {
-  const store = createStore(
-    rootReducer,
-    composeWithDevTools(
-      applyMiddleware(
-        epicMiddleware,
-        routerMiddleware,
-      ),
-    ),
-  );
+  const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(epicMiddleware, routerMiddleware)));
   return store;
 }
