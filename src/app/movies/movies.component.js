@@ -12,13 +12,13 @@ class Movies extends Component {
   render() {
     return (
       <div>
-        <div>
-          <ul>
-            {this.props.movies.map(m => (
-              <Movie key={m.id} {...m} onMovieClick={() => this.props.navigateToMovieDetails(m.id)} />
+        {this.props.movies.map(movieRow => (
+          <div key={movieRow} style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly' }}>
+            {movieRow.map(movie => (
+              <Movie onMovieClick={() => this.props.navigateToMovieDetails(movie.id)} key={movie.id} {...movie} />
             ))}
-          </ul>
-        </div>
+          </div>
+        ))}
       </div>
     );
   }
