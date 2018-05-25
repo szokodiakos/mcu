@@ -62,6 +62,12 @@ describe('movie-sorter', () => {
     });
 
     describe('phase based sorting', () => {
+      test('make movies siblings if they have the same phases', () => {
+        expect(sortMovies([{ title: 'foo', phase: 1 }, { title: 'bar', phase: 1 }])).toEqual([
+          [{ title: 'foo', phase: 1 }, { title: 'bar', phase: 1 }],
+        ]);
+      });
+
       test('make a movie the child of another movie if its from a newer phase', () => {
         expect(sortMovies([{ title: 'foo', phase: 1 }, { title: 'bar', phase: 2 }])).toEqual([
           [{ title: 'foo', phase: 1 }],
